@@ -16,12 +16,13 @@ export default async function handler(req, res) {
       const fileName = `${Date.now()}-${path.basename(imageUrl)}`;
       const uploadPath = path.join('uploads', fileName);
 
-      // Save the file to the uploads directory
       fs.writeFileSync(uploadPath, buffer);
 
-      // Respond with the URL of the uploaded file
       const fileUrl = `https://${req.headers.host}/uploads/${fileName}`;
-      res.status(200).json({ url: fileUrl });
+      res.status(200).json({ 
+        name: "Ameen", 
+        url: fileUrl 
+      });
     } catch (error) {
       console.error('Error uploading file:', error);
       return res.status(500).json({ error: 'Error uploading file' });
